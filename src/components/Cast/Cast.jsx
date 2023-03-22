@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { getMovieCast } from 'services/movies-api';
 
+import { List, Item, Image, Text } from './Cast.styled';
+
 const Cast = () => {
   const [cast, setCast] = useState([]);
 
@@ -22,11 +24,11 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
+    <List>
       {cast.map(({ profile_path, name, character, id }) => {
         return (
-          <li key={id}>
-            <img
+          <Item key={id}>
+            <Image
               src={
                 profile_path
                   ? `https://image.tmdb.org/t/p/original${profile_path}`
@@ -35,12 +37,12 @@ const Cast = () => {
               alt=""
               width="300"
             />
-            <p>{name}</p>
-            <p>{character}</p>
-          </li>
+            <h3>{name}</h3>
+            <Text>{character}</Text>
+          </Item>
         );
       })}
-    </ul>
+    </List>
   );
 };
 
