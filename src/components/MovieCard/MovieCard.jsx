@@ -1,39 +1,71 @@
 import { Suspense } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
+
+import {
+  BackLink,
+  BackArrow,
+  InfoWrapper,
+  Image,
+  SubTitle,
+  Text,
+  List,
+  Item,
+} from './MovieCard.styled';
 
 const MovieCard = ({
-  movie: { poster_path, title, vote_count, overview, genres = [] },
+  movie: {
+    backdrop_path,
+    poster_path,
+    title,
+    vote_count,
+    overview,
+    genres = [],
+  },
 }) => {
+  const location = useLocation();
+  const backLocation = useRef(location.state?.from ?? '/');
+  const genresString = genres.map(genre => genre.name).join(', ');
   return (
-    <article>
-      <img
-        src={`https://image.tmdb.org/t/p/original${poster_path}`}
-        alt=""
-        width="600"
-      />
-      <h2>{title}</h2>
-      <p>User Score: {vote_count}&#37;</p>
-      <h3>Overview</h3>
-      <p>{overview}</p>
-      <h4>Genres</h4>
-      <ul>
-        {genres.map(({ id, name }) => (
-          <li key={id}>{name}</li>
-        ))}
-      </ul>
-      <p>Additional information</p>
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
-    </article>
+    <>
+      <BackLink to={backLocation.current} state={{ from: location }}>
+        <BackArrow size="24" />
+        Back to previous page
+      </BackLink>
+      <article>
+        <InfoWrapper>
+          <Image
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                : 'https://www.reelviews.net/resources/img/default_poster.jpg'
+            }
+            alt=""
+            width="400"
+          />
+          <div>
+            <SubTitle>{title}</SubTitle>
+            <Text>User Score: {vote_count}&#37;</Text>
+            <SubTitle>Overview:</SubTitle>
+            <Text>{overview}</Text>
+            <SubTitle>Genres:</SubTitle>
+            <Text>{genresString}</Text>
+          </div>
+        </InfoWrapper>
+        <SubTitle>Additional information</SubTitle>
+        <List>
+          <Item>
+            <Link to="cast">Cast</Link>
+          </Item>
+          <Item>
+            <Link to="reviews">Reviews</Link>
+          </Item>
+        </List>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </article>
+    </>
   );
 };
 

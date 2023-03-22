@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import MoviesList from 'components/MoviesList/MoviesList';
+import Section from 'components/Section/Section';
 
 import { getTrending } from 'services/movies-api';
 
@@ -20,9 +21,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <MoviesList movies={movies} flag={'movies/'}/>
-    </div>
+    <main>
+      <Section
+        title={'Trending today'}>
+        <MoviesList movies={movies} flag={'movies/'} />
+      </Section>
+    </main>
   );
 };
 

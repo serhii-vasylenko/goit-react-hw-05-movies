@@ -1,17 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
+import { List, Item, Image } from 'components/MoviesList/MoviesList.styled';
 
 const MoviesList = ({ movies, flag }) => {
   const location = useLocation();
   return (
-    <>
-    <ul>
-      {movies.map(({id, poster_path, title}) => {
+    <List>
+      {movies.map(({ id, poster_path, title }) => {
         return (
-          <li key={nanoid()}>
-            <Link to={`${flag}${id}`} state={{from: location}}>
-              <img
+          <Item key={nanoid()}>
+            <Link to={`${flag}${id}`} state={{ from: location }}>
+              <Image
                 src={
                   poster_path
                     ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -21,11 +21,10 @@ const MoviesList = ({ movies, flag }) => {
               />
               <p>{title}</p>
             </Link>
-          </li>
+          </Item>
         );
       })}
-    </ul>
-    </>
+    </List>
   );
 };
 
