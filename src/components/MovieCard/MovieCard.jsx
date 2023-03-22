@@ -14,18 +14,10 @@ import {
 } from './MovieCard.styled';
 
 const MovieCard = ({
-  movie: {
-    backdrop_path,
-    poster_path,
-    title,
-    vote_count,
-    overview,
-    genres = [],
-  },
+  movie: { poster_path, title, vote_average, overview, genres = [] },
 }) => {
   const location = useLocation();
   const backLocation = useRef(location.state?.from ?? '/');
-  const genresString = genres.map(genre => genre.name).join(', ');
   return (
     <>
       <BackLink to={backLocation.current} state={{ from: location }}>
@@ -45,11 +37,11 @@ const MovieCard = ({
           />
           <div>
             <SubTitle>{title}</SubTitle>
-            <Text>User Score: {vote_count}&#37;</Text>
+            <Text>User Score: {Math.round(vote_average * 10)}&#37;</Text>
             <SubTitle>Overview:</SubTitle>
             <Text>{overview}</Text>
             <SubTitle>Genres:</SubTitle>
-            <Text>{genresString}</Text>
+            <Text>{genres.map(genre => genre.name).join(', ')}</Text>
           </div>
         </InfoWrapper>
         <SubTitle>Additional information</SubTitle>

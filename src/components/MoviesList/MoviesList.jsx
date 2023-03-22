@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
@@ -5,9 +6,12 @@ import { List, Item, Image } from 'components/MoviesList/MoviesList.styled';
 
 const MoviesList = ({ movies, flag }) => {
   const location = useLocation();
+  const sortedMovies = [...movies].sort(
+    (first, second) => second.popularity - first.popularity
+  );
   return (
     <List>
-      {movies.map(({ id, poster_path, title }) => {
+      {sortedMovies.map(({ id, poster_path, title }) => {
         return (
           <Item key={nanoid()}>
             <Link to={`${flag}${id}`} state={{ from: location }}>
@@ -29,3 +33,8 @@ const MoviesList = ({ movies, flag }) => {
 };
 
 export default MoviesList;
+
+MoviesList.propTypes = {
+  movies: PropTypes.array.isRequired,
+  flag: PropTypes.string,
+};

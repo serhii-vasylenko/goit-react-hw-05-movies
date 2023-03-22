@@ -1,4 +1,5 @@
-import {SectionEl, Title} from 'components/Section/Section.styled'
+import PropTypes from 'prop-types';
+import { SectionEl, Title } from 'components/Section/Section.styled';
 
 const Section = ({ title, children }) => {
   return (
@@ -10,3 +11,8 @@ const Section = ({ title, children }) => {
 };
 
 export default Section;
+
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node,
+};

@@ -1,45 +1,25 @@
 import styled from '@emotion/styled';
+import { DebounceInput } from 'react-debounce-input';
+import { HiSearch } from 'react-icons/hi';
 
-export const Header = styled.header`
-  top: 0;
-  left: 0;
-  position: sticky;
-  z-index: 1100;
-  display: flex;
-  justify-content: center;
+export const Wrapper = styled.div`
+  display: inline-flex;
   align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fff;
-  background-color: #6495ed;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  position: relative;
+  margin-bottom: 16px;
+  text-transform: uppercase;
 `;
 
-export const Form = styled.form`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  background-color: #fff;
+export const Input = styled(DebounceInput)`
+  width: 300px;
+  padding: 8px 32px 8px 8px;
   border-radius: 4px;
-  overflow: hidden;
-`;
-
-export const SearchButton = styled.button`
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-`;
-
-export const Input = styled.input`
-  display: inline-block;
-  width: 100%;
   font: inherit;
-  border: none;
-  outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+`;
+export const Icon = styled(HiSearch)`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 6px;
+  fill: #a8b3a8;
 `;
