@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { getMovieCast } from 'services/movies-api';
 
-import { List, Item, Image, Text } from './Cast.styled';
+import { List, Item, Image, Text, Title } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -37,7 +37,7 @@ const Cast = () => {
               alt=""
               width="300"
             />
-            <h3>{name}</h3>
+            <Title>{name}</Title>
             <Text>{character}</Text>
           </Item>
         );
