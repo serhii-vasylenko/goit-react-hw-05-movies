@@ -22,7 +22,6 @@ export const Item = styled.li`
 
     &:hover img{
     transform: scale(1.03);
-    cursor: zoom-in;
   }
   }
 `;
