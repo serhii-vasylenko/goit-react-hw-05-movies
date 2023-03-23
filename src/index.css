@@ -42,3 +42,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+a:hover {
+  color: #a8b3a8;
+}

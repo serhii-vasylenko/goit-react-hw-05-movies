@@ -19,11 +19,17 @@ export const Item = styled.li`
   }
   @media screen and (min-width: 1280px) {
     flex-basis: calc((100% - 48px) / 4);
+
+    &:hover img{
+    transform: scale(1.03);
+    cursor: zoom-in;
+  }
   }
 `;
 export const Image = styled.img`
   margin-bottom: 12px;
   width: 100%;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (min-width: 768px) {
     height: 540px;
 
