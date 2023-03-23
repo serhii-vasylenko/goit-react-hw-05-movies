@@ -52,4 +52,7 @@ export const List = styled.ul`
 `;
 export const Item = styled.li`
   margin-bottom: 8px;
+  &:hover {
+    color: #a8b3a8;
+  }
 `;
