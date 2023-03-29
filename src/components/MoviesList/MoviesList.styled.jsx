@@ -20,9 +20,9 @@ export const Item = styled.li`
   @media screen and (min-width: 1280px) {
     flex-basis: calc((100% - 48px) / 4);
 
-    &:hover img{
-    transform: scale(1.03);
-  }
+    &:hover img {
+      transform: scale(1.03);
+    }
   }
 `;
 export const Image = styled.img`
